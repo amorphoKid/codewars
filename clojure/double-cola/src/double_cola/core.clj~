@@ -1,0 +1,26 @@
+(ns double-cola.core
+  (:gen-class))
+
+(def names ["Sheldon" "Leonard" "Penny" "Rajesh" "Howard"])
+
+(def first-group (map vector (repeat 1) names)
+)
+
+(defn groups []
+  (lazy-seq (concat first-group
+                    (map double-group (groups))))
+  )
+            
+
+(defn double-group [[size name]]
+   [(* 2 size) name]
+  )
+
+
+(defn -main
+  "I don't do a whole lot ... yet."
+  [& args]
+  (println "Hello, World!")
+  (take-while #(< % 100) (reductions + (map first (groups))))
+  (last (last (take (count (take-while #(< % 100) (reductions + (map first (groups))))) (groups))))
+  )

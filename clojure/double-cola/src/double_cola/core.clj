@@ -21,7 +21,7 @@
 (defn get-group-index-nth-drink [nth-drink]
    (count (take-while #(< % nth-drink) (sum-of-drinks)))
 )
-(defn get-person-of-nth-drink [nth-drink]
+(defn get-person-nth-drink [nth-drink]
   (last (nth (groups) (get-group-index-nth-drink nth-drink)))
   )
 
@@ -34,5 +34,5 @@
   
   (println (take (count (take-while #(< % 100) (reductions + (map first (groups))))) (groups)))
 
-  (get-person-of-nth-drink 100)
+  (get-person-nth-drink 100)
   )
